@@ -49,7 +49,7 @@ void map_noise_to_leds_with_hue() {
 
       //leds[XY(i,j)] = CHSV(noise[j][i], 255, noise[i][j]);
       // constrained hue for more uniform colors
-      matrix[XY(i, j)] = CHSV(ihue + (noise[j][i] >> 2), 255, noise[i][j]);
+      matrix[XY(i, j)] += CHSV(ihue + (noise[j][i] >> 2), 255, noise[i][j]);
     }
   }
   ihue += 1;
@@ -82,7 +82,7 @@ void map_noise_to_leds_with_palette(CRGB leds[], uint8_t rows, uint8_t cols, uin
       }
 
       CRGB color = ColorFromPalette(currentPalette, index, bri);
-      leds[XY(i, j)] = color;
+      leds[XY(i, j)] += color;
     }
   }
 
